@@ -1,0 +1,5 @@
+com\snapfinance\svixpoc\controller\MerchantController.class
+com\snapfinance\svixpoc\service\MerchantServiceImpl.class
+com\snapfinance\svixpoc\SvixpocApplication.class
+com\snapfinance\svixpoc\service\MerchantService.class
+com\snapfinance\svixpoc\entity\Merchant.class
