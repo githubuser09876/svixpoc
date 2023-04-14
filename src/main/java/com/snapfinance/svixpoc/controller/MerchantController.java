@@ -43,4 +43,11 @@ public class MerchantController {
 	public List<Merchant> getMerchants(){
 		return this.merchantServiceImpl.getMerchants();
 	}
+	
+	@GetMapping("/works")
+	public String works(){
+		return "It works";
+	}
+	
+	
 }
