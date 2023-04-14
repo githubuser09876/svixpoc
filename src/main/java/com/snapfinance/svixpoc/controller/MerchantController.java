@@ -2,6 +2,8 @@ package com.snapfinance.svixpoc.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,19 +17,29 @@ import com.snapfinance.svixpoc.entity.Merchant;
 import com.snapfinance.svixpoc.service.MerchantServiceImpl;
 
 @RestController
+@CrossOrigin
 public class MerchantController {
 
+	Logger logger = LoggerFactory.getLogger(MerchantController.class);
 	@Autowired
 	MerchantServiceImpl merchantServiceImpl;
 	
-	@PostMapping("/api/addMerchant")
-	@CrossOrigin
-	public ResponseEntity addMerchant(@RequestBody Merchant merchant) {
-		this.merchantServiceImpl.addMerchant(merchant);
-		return new ResponseEntity<>( HttpStatus.OK );
-}
+	
+	@PostMapping("/add")
+	public ResponseEntity<HttpStatus> addMerchant(@RequestBody Merchant merchant) {
+		logger.info("Add Method Hit");
+		try{
+			this.merchantServiceImpl.addMerchant(merchant);
+			return new ResponseEntity<>( HttpStatus.OK );
+		}catch(Exception ex) {
+			logger.error(ex.getMessage());
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+	
+	
 	@GetMapping("/api/getMerchants")
-	@CrossOrigin
 	public List<Merchant> getMerchants(){
 		return this.merchantServiceImpl.getMerchants();
 	}
