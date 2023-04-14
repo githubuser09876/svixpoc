@@ -3,6 +3,8 @@ package com.snapfinance.svixpoc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +22,9 @@ public class MerchantController {
 	
 	@PostMapping("/api/addMerchant")
 	@CrossOrigin
-	public void addMerchant(@RequestBody Merchant merchant) {
+	public ResponseEntity addMerchant(@RequestBody Merchant merchant) {
 		this.merchantServiceImpl.addMerchant(merchant);
+		return new ResponseEntity<>( HttpStatus.OK );
 }
 	@GetMapping("/api/getMerchants")
 	@CrossOrigin
